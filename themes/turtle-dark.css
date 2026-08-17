@@ -1,0 +1,192 @@
+/* Turtle Dark Slides - deep forest presentation variant. */
+@import url('./telekom-pastel-slides.css');
+
+:root {
+	--shell-bg: #151d18;
+	--panel-bg: #202c24;
+	--sidebar-bg: #1b271f;
+	--text: #edf5e9;
+	--muted: #b7c9b5;
+	--border: #4d6651;
+	--accent: #c9dfa8;
+	--active-file-bg: rgba(201, 223, 168, 0.2);
+	--active-file-text: #f2f8df;
+	--turtle-ink: #edf5e9;
+	--turtle-muted: #b7c9b5;
+	--turtle-green: #a8d5b3;
+	--turtle-green-dark: #d4e8bb;
+	--turtle-leaf: #d0dda0;
+	--turtle-mint: #31513c;
+	--turtle-paper: #26352b;
+	--turtle-bg: #151d18;
+	--turtle-border: #4d6651;
+	--turtle-code: #202e26;
+}
+
+html,
+body {
+	background: #121a16;
+}
+
+body {
+	color: var(--turtle-ink);
+}
+
+button,
+select {
+	background: #2a3a2f;
+	color: var(--text);
+}
+
+.tree-label.active {
+	background: var(--active-file-bg);
+	color: var(--active-file-text);
+}
+
+#write > h1:first-child {
+	color: #e1edc5;
+	border-color: #a8d5b3;
+	background: linear-gradient(90deg, rgba(77, 116, 86, 0.55), rgba(93, 105, 66, 0.48));
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: var(--turtle-green-dark);
+}
+
+h2 {
+	color: #bfe1c3;
+}
+
+h3 {
+	color: #d6e2ad;
+}
+
+h4,
+h5,
+h6 {
+	color: var(--turtle-ink);
+}
+
+a {
+	color: #b9e1c8;
+}
+
+a:hover {
+	color: #e1edb9;
+}
+
+ul > li::before {
+	color: var(--turtle-green);
+}
+
+ul ul > li::before {
+	color: var(--turtle-leaf);
+}
+
+code {
+	background: var(--turtle-code);
+	color: #d7edc8;
+}
+
+.md-fences {
+	border-color: var(--turtle-border);
+	background: var(--turtle-code);
+	color: var(--turtle-ink);
+}
+
+table {
+	background: var(--turtle-paper);
+}
+
+table th,
+table td {
+	border-color: var(--turtle-border);
+}
+
+blockquote {
+	background: #2c4935;
+	border-left-color: #a8d5b3;
+	color: #e0eddb;
+}
+
+table {
+	box-shadow: 0 24px 38px rgba(0, 0, 0, 0.28);
+}
+
+table thead th {
+	background: linear-gradient(90deg, #477457, #68734d);
+	color: #f0f6de;
+}
+
+#write > hr {
+	background: linear-gradient(90deg, rgba(168, 213, 179, 0), #a8d5b3, #d0dda0, rgba(208, 221, 160, 0));
+}
+
+#write > hr::after {
+	background: #304235;
+	color: #dce9b7;
+	border-color: #66816a;
+}
+
+.slide {
+	border-color: #4d6651;
+	background: linear-gradient(165deg, rgba(38, 53, 43, 0.98), rgba(31, 50, 38, 0.98));
+	box-shadow: 0 24px 38px rgba(0, 0, 0, 0.3);
+}
+
+@media print {
+	html,
+	body,
+	#write,
+	.slide {
+		background: #121a16 !important;
+		color: #edf5e9 !important;
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
+	}
+
+	.slide {
+		background: linear-gradient(165deg, rgba(38, 53, 43, 0.98), rgba(31, 50, 38, 0.98)) !important;
+	}
+
+	.slide h1,
+	.slide h2,
+	.slide h3,
+	.slide h4,
+	.slide h5,
+	.slide h6 {
+		color: inherit !important;
+	}
+
+	.slide p,
+	.slide li,
+	.slide details,
+	.slide summary {
+		color: #edf5e9 !important;
+	}
+
+	.slide a {
+		color: #b9e1c8 !important;
+	}
+
+	.slide code,
+	.slide .md-fences {
+		color: #d7edc8 !important;
+		background: #202e26 !important;
+	}
+
+	#write p,
+	#write li,
+	#write details,
+	#write summary,
+	#write td,
+	#write th,
+	#write blockquote {
+		color: #edf5e9 !important;
+	}
+}

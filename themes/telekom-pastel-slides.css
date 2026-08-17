@@ -1,0 +1,446 @@
+/* =============================================================
+   Telekom Pastel Slides – Typora Theme
+   Presentation-focused layout with horizontal-rule slide breaks.
+   Use --- or *** in Markdown to create a new slide.
+   ============================================================= */
+
+:root {
+	/* Pastel Telekom-inspired palette */
+	--tps-bg: #f8f7ff;
+	--tps-paper: #fffdfd;
+	--tps-ink: #2d2a33;
+	--tps-muted: #6e6779;
+	--tps-magenta: #f68ac0;
+	--tps-magenta-soft: #ffd8ec;
+	--tps-cyan: #8fd9e8;
+	--tps-cyan-soft: #e2f6fb;
+	--tps-mint: #9fdccf;
+	--tps-mint-soft: #e7f8f3;
+	--tps-border: #d9d3e7;
+	--tps-code-bg: #f3f1fa;
+	--tps-quote-bg: #fff0f8;
+	--side-bar-bg-color: #f2f0fb;
+	--control-text-color: #6e6779;
+
+	/* Slide geometry */
+	--slide-width: 1280px;
+	--slide-pad-x: 88px;
+	--slide-pad-y: 72px;
+	--editor-slide-min-height: 92vh;
+}
+
+/* ----- Font declarations ------------------------------------ */
+@font-face {
+	font-family: 'TeleNeo Office';
+	font-style: normal;
+	font-weight: 100;
+	src: local('TeleNeo Office Thin'),
+	     url('./telekom/TeleNeoOffice-Thin_1411870410.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'TeleNeo Office';
+	font-style: italic;
+	font-weight: 100;
+	src: local('TeleNeo Office Thin Italic'),
+	     url('./telekom/TeleNeoOffice-ThinItalic_2316131878.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'TeleNeo Office';
+	font-style: normal;
+	font-weight: 400;
+	src: local('TeleNeo Office'),
+	     local('TeleNeo Office Regular'),
+	     url('./telekom/TeleNeoOffice-Regular_14301196.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'TeleNeo Office';
+	font-style: italic;
+	font-weight: 400;
+	src: local('TeleNeo Office Italic'),
+	     url('./telekom/TeleNeoOffice-RegularItalic_1035978088.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'TeleNeo Office';
+	font-style: normal;
+	font-weight: 500;
+	src: local('TeleNeo Office Medium'),
+	     url('./telekom/TeleNeoOffice-Medium_576149658.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'TeleNeo Office';
+	font-style: italic;
+	font-weight: 500;
+	src: local('TeleNeo Office Medium Italic'),
+	     url('./telekom/TeleNeoOffice-MediumItalic_4288033782.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'TeleNeo Office';
+	font-style: normal;
+	font-weight: 700;
+	src: local('TeleNeo Office Bold'),
+	     url('./telekom/TeleNeoOffice-Bold_2914011576.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'TeleNeo Office';
+	font-style: italic;
+	font-weight: 700;
+	src: local('TeleNeo Office Bold Italic'),
+	     url('./telekom/TeleNeoOffice-BoldItalic_3069299988.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'TeleNeo Office';
+	font-style: normal;
+	font-weight: 800;
+	src: local('TeleNeo Office ExtraBold'),
+	     url('./telekom/TeleNeoOffice-ExtraBold_7780289.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'TeleNeo Office';
+	font-style: italic;
+	font-weight: 800;
+	src: local('TeleNeo Office ExtraBold Italic'),
+	     url('./telekom/TeleNeoOffice-ExtraBoldItalic_541036317.woff2') format('woff2');
+}
+
+html {
+	font-size: 24px;
+	-webkit-font-smoothing: antialiased;
+}
+
+html,
+body {
+	margin: 0;
+	background:
+		radial-gradient(circle at 12% 10%, #ffe9f5 0%, rgba(255, 233, 245, 0) 34%),
+		radial-gradient(circle at 90% 4%, #e8f8ff 0%, rgba(232, 248, 255, 0) 36%),
+		linear-gradient(180deg, #fbfaff 0%, #f5f7ff 100%);
+}
+
+body {
+	font-family: 'TeleNeo Office', 'Avenir Next', 'Helvetica Neue', sans-serif;
+	font-weight: 400;
+	line-height: 1.45;
+	color: var(--tps-ink);
+}
+
+#write {
+	max-width: calc(var(--slide-width) + 2 * var(--slide-pad-x));
+	margin: 2.2rem auto 4rem;
+	padding: 0 var(--slide-pad-x) 5rem;
+	scroll-snap-type: y proximity;
+}
+
+/* A document starts like a title slide */
+#write > h1:first-child {
+	margin-top: 12vh;
+	padding: 0.35em 0;
+	text-align: center;
+	font-size: 2.9rem;
+	font-weight: 800;
+	line-height: 1.1;
+	color: #8b3f74;
+	border-top: 6px solid var(--tps-magenta-soft);
+	border-bottom: 6px solid var(--tps-magenta-soft);
+	background: linear-gradient(90deg, rgba(255, 236, 247, 0.5), rgba(236, 248, 255, 0.5));
+	border-radius: 14px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'TeleNeo Office', 'Avenir Next', 'Helvetica Neue', sans-serif;
+	font-weight: 800;
+	line-height: 1.2;
+	letter-spacing: 0.01em;
+	color: #723467;
+	margin-top: 0.3em;
+	margin-bottom: 0.35em;
+}
+
+h1 {
+	font-size: 2.25rem;
+}
+
+h2 {
+	font-size: 1.75rem;
+	color: #5a4b8a;
+}
+
+h3 {
+	font-size: 1.35rem;
+	color: #3d6f83;
+}
+
+p,
+ul,
+ol,
+blockquote,
+.mathjax-block,
+table {
+	margin-top: 0;
+	margin-bottom: 0.7em;
+}
+
+p,
+li,
+table {
+	font-size: 1.04rem;
+}
+
+a {
+	color: #3a6da7;
+	text-decoration: none;
+	border-bottom: 1px solid rgba(58, 109, 167, 0.35);
+}
+
+a:hover {
+	color: #7e3b7f;
+	border-bottom-color: rgba(126, 59, 127, 0.55);
+}
+
+ul {
+	list-style: none;
+	padding-left: 1.4em;
+}
+
+ul > li {
+	position: relative;
+}
+
+ul > li::before {
+	content: '■';
+	position: absolute;
+	left: -1.2em;
+	top: 0.08em;
+	font-size: 0.72em;
+	color: #e771ab;
+}
+
+ul ul > li::before {
+	color: #5db8c9;
+}
+
+ol {
+	padding-left: 1.55em;
+}
+
+ol li::marker {
+	color: #c45593;
+	font-weight: 700;
+}
+
+blockquote {
+	padding: 0.8em 1em;
+	border-left: 6px solid #f4a8cf;
+	background: var(--tps-quote-bg);
+	border-radius: 0 10px 10px 0;
+	color: #5a4460;
+}
+
+code,
+pre {
+	font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
+}
+
+code {
+	font-size: 0.82em;
+	background: #edeffb;
+	color: #3f4a92;
+	padding: 0.1em 0.32em;
+	border-radius: 5px;
+}
+
+.md-fences {
+	font-size: 0.8em;
+	line-height: 1.5;
+	border-radius: 10px;
+	border: 1px solid #d8d9ec;
+	background: var(--tps-code-bg);
+	color: #2f3353;
+	padding: 1em 1.2em;
+}
+
+.md-fences code {
+	padding: 0;
+	background: transparent;
+	color: inherit;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+	font-size: 0.9rem;
+	overflow: hidden;
+	border-radius: 10px;
+	background: var(--tps-paper);
+	box-shadow: 0 10px 28px rgba(84, 58, 102, 0.08);
+}
+
+table th,
+table td {
+	padding: 0.35em 0.55em;
+	border: 1px solid var(--tps-border);
+}
+
+table thead th {
+	background: linear-gradient(90deg, #f4b8d9, #bde9f4);
+	color: #4b3651;
+	font-weight: 700;
+}
+
+/* Slide separators: write --- or *** in Markdown */
+#write > hr {
+	position: relative;
+	border: 0;
+	height: 3px;
+	margin: max(2.8rem, calc((100vh - 3px) / 2 - 5.5rem)) 0;
+	background: linear-gradient(90deg, rgba(246, 138, 192, 0), rgba(246, 138, 192, 0.95), rgba(143, 217, 232, 0.95), rgba(143, 217, 232, 0));
+	scroll-snap-align: center;
+}
+
+#write > hr::after {
+	content: 'Next slide';
+	position: absolute;
+	top: -0.95rem;
+	left: 50%;
+	transform: translateX(-50%);
+	font-size: 0.5rem;
+	font-weight: 700;
+	letter-spacing: 0.09em;
+	text-transform: uppercase;
+	padding: 0.2em 0.8em;
+	background: #fff7fb;
+	color: #8b4c73;
+	border: 1px solid #f0c7df;
+	border-radius: 999px;
+}
+
+/* Slightly tighter rhythm in slides */
+#write > h1 + p,
+#write > h2 + p,
+#write > h3 + p {
+	margin-top: 0.25em;
+}
+
+/* Optional true slide blocks for editor mode.
+   Usage in Markdown:
+   <section class="slide">
+   # Slide title
+   content
+   </section>
+*/
+.slide {
+	min-height: var(--editor-slide-min-height);
+	box-sizing: border-box;
+	padding: 1.15rem 1.3rem;
+	margin: 1.2rem 0;
+	border-radius: 18px;
+	border: 1px solid #e7daef;
+	background:
+		linear-gradient(165deg, rgba(255, 247, 252, 0.96), rgba(242, 249, 255, 0.96));
+	box-shadow: 0 20px 36px rgba(75, 52, 104, 0.11);
+	scroll-snap-align: start;
+}
+
+.slide > :first-child {
+	margin-top: 0;
+}
+
+.slide > :last-child {
+	margin-bottom: 0;
+}
+
+/* Typora internals */
+.md-tag {
+	color: inherit;
+	font: inherit;
+}
+
+#write pre.md-meta-block {
+	background: #f4f1fb;
+	color: #83759a;
+	border-radius: 8px;
+	padding: 0.65em 0.85em;
+}
+
+.cm-s-typora-default .cm-header,
+.cm-s-typora-default .cm-property,
+.CodeMirror.cm-s-typora-default div.CodeMirror-cursor {
+	color: #d96fa8;
+}
+
+.cm-s-typora-default .cm-atom,
+.cm-s-typora-default .cm-number {
+	color: #6f67aa;
+}
+
+@media only screen and (max-width: 1024px) {
+	html {
+		font-size: 20px;
+	}
+
+	#write {
+		padding: 0 30px 3rem;
+		margin-top: 1.5rem;
+		scroll-snap-type: none;
+	}
+
+	#write > h1:first-child {
+		margin-top: 8vh;
+		font-size: 2.1rem;
+	}
+
+	#write > hr {
+		margin: 2.4rem 0;
+	}
+
+	.slide {
+		min-height: auto;
+		padding: 0.95rem 0.95rem;
+	}
+}
+
+/* PDF/print: each HR starts a fresh slide page */
+@media print, (overflow-block: paged) or (overflow-block: optional-paged) {
+	html,
+	body {
+		background: #ffffff;
+	}
+
+	html {
+		font-size: 15pt;
+	}
+
+	#write {
+		max-width: none;
+		padding: var(--slide-pad-y) var(--slide-pad-x);
+		margin: 0;
+	}
+
+	#write > hr {
+		margin: 0;
+		height: 0;
+		background: transparent;
+		break-before: page;
+		page-break-before: always;
+	}
+
+	#write > hr::after {
+		display: none;
+	}
+
+	table,
+	blockquote,
+	.md-fences {
+		break-inside: avoid;
+		page-break-inside: avoid;
+	}
+}
+
+@page {
+	size: 16in 9in;
+	margin: 0;
+}

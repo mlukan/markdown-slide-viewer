@@ -1,0 +1,197 @@
+/* Telekom Dark Slides - dark presentation variant. */
+@import url('./telekom-pastel-slides.css');
+
+:root {
+	--shell-bg: #1c1b21;
+	--panel-bg: #28262e;
+	--sidebar-bg: #222128;
+	--text: #f4edf2;
+	--muted: #c5b9c4;
+	--border: #5b5361;
+	--accent: #e8b8d1;
+	--active-file-bg: rgba(232, 184, 209, 0.22);
+	--active-file-text: #fff1f7;
+	--tps-bg: #1c1b21;
+	--tps-paper: #2a2831;
+	--tps-ink: #f4edf2;
+	--tps-muted: #c5b9c4;
+	--tps-magenta: #e8b8d1;
+	--tps-magenta-soft: #76566a;
+	--tps-cyan: #b9dbe2;
+	--tps-cyan-soft: #3e5960;
+	--tps-mint: #b9dccd;
+	--tps-mint-soft: #3e5d54;
+	--tps-border: #5b5361;
+	--tps-code-bg: #24242c;
+	--tps-quote-bg: #3a2e38;
+	--side-bar-bg-color: #222128;
+	--control-text-color: #c5b9c4;
+}
+
+html,
+body {
+	background: #17151a;
+}
+
+body {
+	color: var(--tps-ink);
+}
+
+button,
+select {
+	background: #302e37;
+	color: var(--text);
+}
+
+.tree-label.active {
+	background: var(--active-file-bg);
+	color: var(--active-file-text);
+}
+
+#write > h1:first-child {
+	color: #f4d3e2;
+	border-color: var(--tps-magenta);
+	background: linear-gradient(90deg, rgba(118, 86, 106, 0.38), rgba(62, 89, 96, 0.38));
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: #f2d3e2;
+}
+
+h2 {
+	color: #e9c8d9;
+}
+
+h3 {
+	color: #c5e1e5;
+}
+
+h4,
+h5 {
+	color: #f3edf2;
+}
+
+h6 {
+	color: #b9aeb8;
+}
+
+a {
+	color: #c1e0e3;
+}
+
+a:hover {
+	color: #f0cadd;
+}
+
+ul > li::before {
+	color: #e8b8d1;
+}
+
+ul ul > li::before {
+	color: #b9dccd;
+}
+
+blockquote {
+	background: #3a2e38;
+	border-left-color: #e8b8d1;
+	color: #f0e0e8;
+}
+
+code {
+	background: #34323c;
+	color: #d1e8e6;
+}
+
+.md-fences {
+	border-color: #5b5361;
+	background: #24242c;
+	color: #eee4eb;
+}
+
+table {
+	background: #242128;
+	box-shadow: 0 20px 36px rgba(0, 0, 0, 0.28);
+}
+
+table th,
+table td {
+	border-color: #514653;
+}
+
+table thead th {
+	background: linear-gradient(90deg, #76566a, #3e5960);
+	color: #f8eef4;
+}
+
+#write > hr {
+	background: linear-gradient(90deg, rgba(232, 184, 209, 0), #e8b8d1, #b9dbe2, rgba(185, 219, 226, 0));
+}
+
+#write > hr::after {
+	background: #38313a;
+	color: #f0cadd;
+	border-color: #76566a;
+}
+
+.slide {
+	border-color: #5b5361;
+	background: linear-gradient(165deg, rgba(44, 40, 49, 0.98), rgba(34, 47, 51, 0.98));
+	box-shadow: 0 24px 38px rgba(0, 0, 0, 0.3);
+}
+
+@media print {
+	html,
+	body,
+	#write,
+	.slide {
+		background: #17151a !important;
+		color: #f3edf2 !important;
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
+	}
+
+	.slide {
+		background: linear-gradient(165deg, rgba(44, 40, 49, 0.98), rgba(34, 47, 51, 0.98)) !important;
+	}
+
+	.slide h1,
+	.slide h2,
+	.slide h3,
+	.slide h4,
+	.slide h5,
+	.slide h6 {
+		color: inherit !important;
+	}
+
+	.slide p,
+	.slide li,
+	.slide details,
+	.slide summary {
+		color: #f3edf2 !important;
+	}
+
+	.slide a {
+		color: #c1e0e3 !important;
+	}
+
+	.slide code,
+	.slide .md-fences {
+		color: #d1e8e6 !important;
+		background: #24242c !important;
+	}
+
+	#write p,
+	#write li,
+	#write details,
+	#write summary,
+	#write td,
+	#write th,
+	#write blockquote {
+		color: #f3edf2 !important;
+	}
+}

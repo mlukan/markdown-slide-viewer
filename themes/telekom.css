@@ -1,0 +1,580 @@
+/* =============================================================
+   Deutsche Telekom – Typora Presentation Theme
+   Colors & fonts: Deutsche Telekom Circle theme (06/2021)
+   ============================================================= */
+
+/* ----- Telekom color palette -------------------------------- */
+:root {
+	--telekom-magenta:    #E20074;
+	--telekom-teal:       #32B9AF;
+	--telekom-skyblue:    #00A8E6;
+	--telekom-link:       #00739F;
+	--telekom-black:      #262626;  /* Grau 38 */
+	--telekom-gray-mid:   #737373;  /* Grau 115 */
+	--telekom-gray-light: #DCDCDC;  /* Grau 220 */
+	--telekom-gray-pale:  #F5F5F5;
+	--telekom-bg:         #FFFFFF;
+	--side-bar-bg-color:  #F5F5F5;
+	--control-text-color: #737373;
+}
+
+/* ----- Font declarations ------------------------------------ */
+@font-face {
+	font-family: 'TeleNeo Office';
+	font-style: normal;
+	font-weight: 100;
+	src: local('TeleNeo Office Thin'),
+	     url('./telekom/TeleNeoOffice-Thin_1411870410.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'TeleNeo Office';
+	font-style: italic;
+	font-weight: 100;
+	src: local('TeleNeo Office Thin Italic'),
+	     url('./telekom/TeleNeoOffice-ThinItalic_2316131878.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'TeleNeo Office';
+	font-style: normal;
+	font-weight: 400;
+	src: local('TeleNeo Office'),
+	     local('TeleNeo Office Regular'),
+	     url('./telekom/TeleNeoOffice-Regular_14301196.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'TeleNeo Office';
+	font-style: italic;
+	font-weight: 400;
+	src: local('TeleNeo Office Italic'),
+	     url('./telekom/TeleNeoOffice-RegularItalic_1035978088.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'TeleNeo Office';
+	font-style: normal;
+	font-weight: 500;
+	src: local('TeleNeo Office Medium'),
+	     url('./telekom/TeleNeoOffice-Medium_576149658.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'TeleNeo Office';
+	font-style: italic;
+	font-weight: 500;
+	src: local('TeleNeo Office Medium Italic'),
+	     url('./telekom/TeleNeoOffice-MediumItalic_4288033782.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'TeleNeo Office';
+	font-style: normal;
+	font-weight: 700;
+	src: local('TeleNeo Office Bold'),
+	     url('./telekom/TeleNeoOffice-Bold_2914011576.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'TeleNeo Office';
+	font-style: italic;
+	font-weight: 700;
+	src: local('TeleNeo Office Bold Italic'),
+	     url('./telekom/TeleNeoOffice-BoldItalic_3069299988.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'TeleNeo Office';
+	font-style: normal;
+	font-weight: 800;
+	src: local('TeleNeo Office ExtraBold'),
+	     url('./telekom/TeleNeoOffice-ExtraBold_7780289.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'TeleNeo Office';
+	font-style: italic;
+	font-weight: 800;
+	src: local('TeleNeo Office ExtraBold Italic'),
+	     url('./telekom/TeleNeoOffice-ExtraBoldItalic_541036317.woff2') format('woff2');
+}
+
+/* ----- Base ------------------------------------------------- */
+html {
+	font-size: 21px;
+	-webkit-font-smoothing: antialiased;
+}
+
+html, body {
+	margin: auto;
+	background: var(--telekom-bg);
+}
+
+body {
+	font-family: 'TeleNeo Office', Arial, 'Helvetica Neue', sans-serif;
+	font-weight: 400;
+	color: var(--telekom-black);
+	line-height: 1.7;
+}
+
+#write {
+	max-width: 860px;
+	margin: 0 auto;
+	padding: 60px 60px 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+
+
+/* ----- Page Break ------------------------------------------- */
+
+.pagebreak
+{
+    display: none; 
+}
+@media print, (overflow-block: paged) or (overflow-block: optional-paged)
+{
+  html {
+    font-size: 13px;
+  }
+
+  #write {
+    padding-bottom: 1.5cm;
+  }
+
+  table th,
+  table td {
+    padding: 1px 2px;
+    margin: 0;
+    min-width: 0;
+    white-space: normal;
+  }
+
+  table {
+    break-inside: auto;
+    margin-bottom: 1.5cm;
+  }
+
+  table tr {
+    break-inside: avoid;
+    break-after: auto;
+  }
+
+  .pagebreak
+  {
+    display: block;
+    page-break-after: always; /* CSS 2 */
+         break-after: page;   /* CSS 3+ */
+  }
+
+  hr {
+    page-break-before: always; /* CSS 2 */
+         break-before: page;  /* CSS 3+ */
+  }
+
+  #print-footer {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1cm;
+    line-height: 1cm;
+    padding: 0 1.5cm;
+    font-family: 'TeleNeo Office', Arial, 'Helvetica Neue', sans-serif;
+    font-size: 8px;
+    font-weight: 400;
+    color: var(--telekom-gray-mid);
+    border-top: 1px solid var(--telekom-magenta);
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+
+@page {
+  /*size: landscape;*/
+
+  margin-top: 1.5cm;
+  margin: 1.5cm 1cm;
+
+  @bottom-center {
+    content: counter(page) " / " counter(pages);
+    font-family: 'TeleNeo Office', Arial, 'Helvetica Neue', sans-serif;
+    font-size: 8px;
+    color: #737373;
+  }
+}
+
+/* ----- Typography ------------------------------------------- */
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'TeleNeo Office', Arial, 'Helvetica Neue', sans-serif;
+	line-height: 1.3;
+	margin-bottom: 0.5em;
+}
+
+#write > h1:first-child,
+h1 {
+	font-size: 2.6em;
+	font-weight: 800;
+	color: var(--telekom-magenta);
+	margin-top: 1em;
+	padding-bottom: 0.25em;
+	border-bottom: 3px solid var(--telekom-magenta);
+}
+
+h2 {
+	font-size: 1.8em;
+	font-weight: 800;
+	color: var(--telekom-magenta);
+	margin-top: 1.2em;
+	padding-bottom: 0.2em;
+	border-bottom: 1px solid rgba(226, 0, 116, 0.35);
+}
+
+h3 {
+	font-size: 1.3em;
+	font-weight: 800;
+	color: var(--telekom-teal);
+	margin-top: 1em;
+}
+
+h4 {
+	font-size: 1.1em;
+	font-weight: 700;
+	color: var(--telekom-black);
+	margin-top: 0.8em;
+}
+
+h5 {
+	font-size: 1em;
+	font-weight: 700;
+	color: var(--telekom-black);
+	margin-top: 0.7em;
+}
+
+h6 {
+	font-size: 0.9em;
+	font-weight: 700;
+	color: var(--telekom-gray-mid);
+	margin-top: 0.6em;
+}
+
+h1 + h2,
+h2 + h3,
+h3 + h4 {
+	margin-top: 0.3em;
+}
+
+p,
+.mathjax-block {
+	margin-top: 0;
+	margin-bottom: 0.8em;
+}
+
+/* ----- Links ----------------------------------------------- */
+a {
+	color: var(--telekom-link);
+	text-decoration: none;
+}
+a:hover {
+	color: var(--telekom-magenta);
+	text-decoration: underline;
+}
+a img {
+	border: none;
+}
+h1 a, h1 a:hover,
+h2 a, h2 a:hover {
+	color: inherit;
+	text-decoration: none;
+}
+
+/* ----- Lists ----------------------------------------------- */
+ul {
+	list-style: none;
+	padding-left: 1.5em;
+}
+
+ul > li {
+	position: relative;
+}
+
+ul > li::before {
+	content: '▪';
+	position: absolute;
+	left: -1.2em;
+	color: var(--telekom-magenta);
+	font-size: 0.9em;
+	line-height: 1.9;
+}
+
+/* nested ul — teal bullet */
+ul ul > li::before {
+	color: var(--telekom-teal);
+}
+
+/* third level — skyblue bullet */
+ul ul ul > li::before {
+	color: var(--telekom-skyblue);
+}
+
+ol {
+	padding-left: 1.8em;
+	list-style-type: decimal;
+}
+
+ol li::marker {
+	color: var(--telekom-magenta);
+	font-weight: 700;
+}
+
+
+/* ----- Horizontal rule ------------------------------------- */
+hr {
+	border: none;
+	border-top: 1px dashed var(--telekom-gray-light);
+	margin: 0 0;
+}
+
+/* ----- Blockquote ------------------------------------------ */
+blockquote {
+	margin: 1em 0;
+	padding: 0.8em 1.2em;
+	border-left: 4px solid var(--telekom-magenta);
+	background: #FFF0F6;
+	border-radius: 0 4px 4px 0;
+	font-style: italic;
+	color: var(--telekom-black);
+}
+
+blockquote p:last-child {
+	margin-bottom: 0;
+}
+
+/* ----- Code ------------------------------------------------- */
+code,
+pre {
+	font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
+	font-size: 0.85em;
+}
+
+/* inline code */
+code {
+	background: #F0FAFA;
+	color: var(--telekom-teal);
+	border-radius: 3px;
+	padding: 2px 5px;
+}
+
+/* code fences */
+.md-fences {
+	background: #1A1A1A;
+	color: #DCDCDC;
+	border-left: 4px solid var(--telekom-magenta);
+	border-radius: 6px;
+	padding: 1em 1.2em;
+	margin-bottom: 1.5em;
+	font-size: 0.85em;
+	line-height: 1.6;
+	overflow-x: auto;
+}
+
+/* override inline code style inside fences */
+.md-fences code {
+	background: transparent;
+	color: inherit;
+	padding: 0;
+	border-radius: 0;
+}
+
+/* ----- Tables ---------------------------------------------- */
+.ty-table-edit {
+	background: var(--telekom-gray-pale);
+	padding-top: 4px;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 1.5em;
+	font-size: 0.95em;
+}
+
+table th,
+table td {
+	padding: 5px 7px;
+	line-height: 1.5;
+	vertical-align: top;
+	border: 1px solid var(--telekom-gray-light);
+}
+
+table thead th {
+	background: var(--telekom-magenta);
+	color: #FFFFFF;
+	font-weight: 700;
+	vertical-align: bottom;
+	border-color: var(--telekom-magenta);
+}
+
+table tbody tr:nth-child(even) {
+	background: var(--telekom-gray-pale);
+}
+
+table tbody tr:hover {
+	background: #F0FAFA;
+}
+
+table caption + thead tr:first-child th,
+table caption + thead tr:first-child td,
+table colgroup + thead tr:first-child th,
+table colgroup + thead tr:first-child td,
+table thead:first-child tr:first-child th,
+table thead:first-child tr:first-child td {
+	border-top: 0;
+}
+
+table tbody + tbody {
+	border-top: 2px solid var(--telekom-gray-light);
+}
+
+/* ----- Task lists ------------------------------------------ */
+.task-list {
+	padding: 0;
+}
+
+.md-task-list-item {
+	padding-left: 1.6rem;
+}
+
+.md-task-list-item > input:before {
+	content: '\25A1';    /* □ unchecked */
+	display: inline-block;
+	width: 1.33333333rem;
+	height: 1.6rem;
+	vertical-align: middle;
+	text-align: center;
+	color: var(--telekom-gray-light);
+	background-color: var(--telekom-bg);
+	font-size: 1.1em;
+}
+
+.md-task-list-item > input:checked:before,
+.md-task-list-item > input[checked]:before {
+	content: '\2714';    /* ✔ checked */
+	color: var(--telekom-magenta);
+}
+
+.md-task-list-item > input {
+	margin-left: -1.3em;
+	margin-top: calc(1rem - 12px);
+}
+
+/* ----- Utility / Typora internals -------------------------- */
+.md-tag {
+	color: inherit;
+	font: inherit;
+}
+
+#write pre.md-meta-block {
+	min-height: 35px;
+	padding: 0.5em 1em;
+	white-space: pre;
+	background: #f8f8f8;
+	border: 0;
+	color: #999;
+	width: 100vw;
+	max-width: calc(100% + 60px);
+	margin-left: -30px;
+	border-left: 30px #f8f8f8 solid;
+	border-right: 30px #f8f8f8 solid;
+	margin-bottom: 2em;
+	margin-top: -1.3333333333333rem;
+	padding-top: 26px;
+	padding-bottom: 10px;
+	line-height: 1.8em;
+	font-size: 0.76em;
+	padding-left: 0;
+}
+
+.md-img-error.md-image > .md-meta {
+	vertical-align: bottom;
+}
+
+#write > h5.md-focus:before {
+	top: 2px;
+}
+
+.md-toc {
+	margin-top: 40px;
+}
+
+.md-toc-content {
+	padding-bottom: 20px;
+}
+
+.outline-expander:before {
+	color: inherit;
+	font-size: 14px;
+	top: auto;
+	content: "\f0da";
+	font-family: FontAwesome;
+}
+
+.outline-expander:hover:before,
+.outline-item-open > .outline-item > .outline-expander:before {
+	content: "\f0d7";
+}
+
+/** source code mode */
+#typora-source {
+	font-family: 'Consolas', 'Menlo', Courier, monospace;
+	color: #6A6A6A;
+}
+
+.html-for-mac #typora-sidebar {
+	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+
+.cm-s-typora-default .cm-header,
+.cm-s-typora-default .cm-property,
+.CodeMirror.cm-s-typora-default div.CodeMirror-cursor {
+	color: var(--telekom-magenta);
+}
+
+.cm-s-typora-default .cm-atom,
+.cm-s-typora-default .cm-number {
+	color: var(--telekom-gray-mid);
+}
+
+.typora-node .file-list-item-parent-loc,
+.typora-node .file-list-item-time,
+.typora-node .file-list-item-summary {
+	font-family: Arial, sans-serif;
+}
+
+.md-mathjax-midline {
+	background: var(--telekom-gray-pale);
+}
+
+.md-fences .code-tooltip {
+	bottom: -2em;
+}
+
+.dropdown-menu .divider {
+	border-color: var(--telekom-gray-light);
+}
+
+/* ----- Print header / footer ------------------------------- */
+@media not print {
+	#print-header,
+	#print-footer {
+		display: none;
+	}
+}
+

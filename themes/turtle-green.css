@@ -1,0 +1,118 @@
+/* Turtle Green Slides - calm, botanical presentation variant. */
+@import url('./telekom-pastel-slides.css');
+
+:root {
+	--turtle-ink: #20352c;
+	--turtle-muted: #61766a;
+	--turtle-green: #2f7d5b;
+	--turtle-green-dark: #19523e;
+	--turtle-leaf: #78a96b;
+	--turtle-mint: #dcebd8;
+	--turtle-paper: #fbfcf5;
+	--turtle-bg: #edf3e8;
+	--turtle-border: #c4d5bf;
+	--turtle-code: #e5eee0;
+}
+
+html,
+body {
+	background: linear-gradient(180deg, #f4f7ee 0%, var(--turtle-bg) 100%);
+}
+
+body {
+	font-family: 'Avenir Next', 'Helvetica Neue', sans-serif;
+	color: var(--turtle-ink);
+}
+
+#write > h1:first-child {
+	color: var(--turtle-green-dark);
+	border-color: var(--turtle-leaf);
+	background: linear-gradient(90deg, rgba(220, 235, 216, 0.72), rgba(240, 246, 225, 0.72));
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: var(--turtle-green-dark);
+}
+
+h2 {
+	color: var(--turtle-green);
+}
+
+h3 {
+	color: #4e8253;
+}
+
+h4,
+h5,
+h6 {
+	color: var(--turtle-ink);
+}
+
+a {
+	color: #286b57;
+}
+
+a:hover {
+	color: #a75d3b;
+}
+
+ul > li::before {
+	color: var(--turtle-green);
+}
+
+ul ul > li::before {
+	color: var(--turtle-leaf);
+}
+
+blockquote {
+	background: #e4f0df;
+	border-left-color: var(--turtle-green);
+	color: #365b45;
+}
+
+code {
+	background: var(--turtle-code);
+	color: var(--turtle-green-dark);
+}
+
+.md-fences {
+	border-color: var(--turtle-border);
+	background: var(--turtle-code);
+	color: var(--turtle-ink);
+}
+
+table {
+	background: var(--turtle-paper);
+	box-shadow: 0 20px 36px rgba(46, 86, 54, 0.1);
+}
+
+table th,
+table td {
+	border-color: var(--turtle-border);
+}
+
+table thead th {
+	background: linear-gradient(90deg, #b9d5a9, #d9e9bc);
+	color: var(--turtle-green-dark);
+}
+
+#write > hr {
+	background: linear-gradient(90deg, rgba(47, 125, 91, 0), #2f7d5b, #9dbb70, rgba(157, 187, 112, 0));
+}
+
+#write > hr::after {
+	background: #f5f8ef;
+	color: var(--turtle-green-dark);
+	border-color: var(--turtle-border);
+}
+
+.slide {
+	border-color: var(--turtle-border);
+	background: linear-gradient(165deg, rgba(251, 252, 245, 0.98), rgba(232, 243, 226, 0.98));
+	box-shadow: 0 24px 38px rgba(46, 86, 54, 0.12);
+}
