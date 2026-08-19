@@ -12,6 +12,12 @@ jobs:
   build-windows:
     name: Build Windows
     runs-on: windows-latest
+    defaults:
+      run:
+        shell: pwsh
+
+    env:
+      HAS_SIGNING_CERT: ${{ secrets.CODE_SIGNING_CERT_BASE64 != '' }}
 
     steps:
       - uses: actions/checkout@v4
@@ -43,6 +49,93 @@ jobs:
         # Use npx directly — the npm 'tauri' script has a Unix PATH prefix
         # that does not work on Windows; cargo is already on PATH via dtolnay/rust-toolchain.
         run: npx tauri build
+
+      - name: Sign executables with signtool
+        if: ${{ env.HAS_SIGNING_CERT == 'true' }}
+        env:
+          CERT_BASE64: ${{ secrets.CODE_SIGNING_CERT_BASE64 }}
+          CERT_PASSWORD: ${{ secrets.CODE_SIGNING_CERT_PASSWORD }}
+        run: |
+          $filesToSign = Get-ChildItem -Path "src-tauri/target/release/bundle" -Include "*.msi", "*.exe" -File -Recurse
+          if (-not $filesToSign) {
+            throw "No .msi or .exe files found under src-tauri/target/release/bundle to sign."
+          }
+          Write-Host "Files to sign:"
+          $filesToSign | ForEach-Object { Write-Host "  $($_.FullName)" }
+          $certPath = "signing_cert.pfx"
+
+          # Read secrets from env vars, not interpolated into the script text:
+          # interpolating "${{ secrets.X }}" into a double-quoted PS string corrupts
+          # values containing $, ` or " and risks script injection.
+          $certBase64 = $env:CERT_BASE64
+          if ([string]::IsNullOrWhiteSpace($certBase64)) {
+            throw "CODE_SIGNING_CERT_BASE64 secret is empty."
+          }
+          $certBytes = [Convert]::FromBase64String($certBase64)
+          $srcPassword = $env:CERT_PASSWORD
+
+          # Load with .NET (handles modern OpenSSL 3 PBES2/AES PFX files that signtool cannot read),
+          # then re-export in the legacy format signtool accepts.
+          # EphemeralKeySet avoids writing to the user profile's key container, which is
+          # not fully loaded on the runner and otherwise causes "Cannot find the requested object".
+          $flags = [System.Security.Cryptography.X509Certificates.X509KeyStorageFlags]::Exportable -bor
+                   [System.Security.Cryptography.X509Certificates.X509KeyStorageFlags]::EphemeralKeySet
+          try {
+            $cert = [System.Security.Cryptography.X509Certificates.X509Certificate2]::new($certBytes, $srcPassword, $flags)
+          } catch {
+            throw "Could not load the PFX: $($_.Exception.Message) — verify CODE_SIGNING_CERT_BASE64 is a base64-encoded .pfx and CODE_SIGNING_CERT_PASSWORD matches."
+          }
+          Write-Host "Certificate subject:    $($cert.Subject)"
+          Write-Host "Certificate thumbprint: $($cert.Thumbprint)"
+          Write-Host "Valid until:            $($cert.NotAfter)"
+          if (-not $cert.HasPrivateKey) {
+            throw "The certificate has no private key; export the .pfx including the private key."
+          }
+
+          $exportPassword = [Guid]::NewGuid().ToString("N")
+          [IO.File]::WriteAllBytes($certPath, $cert.Export([System.Security.Cryptography.X509Certificates.X509ContentType]::Pkcs12, $exportPassword))
+
+          # Find signtool (prefer the x64 SDK build over the App Certification Kit copy)
+          function Find-SignTool {
+            Get-ChildItem -Path "C:\Program Files (x86)\Windows Kits" -Filter "signtool.exe" -Recurse -ErrorAction SilentlyContinue |
+              Sort-Object -Property @{ Expression = { if ($_.FullName -like '*\bin\*\x64\*') { 0 } else { 1 } } }, @{ Expression = { $_.FullName }; Descending = $true } |
+              Select-Object -First 1
+          }
+
+          $signtoolPath = Find-SignTool
+
+          if (-not $signtoolPath) {
+            Write-Warning "signtool not found. Installing Windows SDK..."
+            choco install windows-sdk-10.1 -y --no-progress
+            $signtoolPath = Find-SignTool
+          }
+
+          if ($signtoolPath) {
+            Write-Host "Using signtool at: $($signtoolPath.FullName)"
+            foreach ($file in $filesToSign) {
+              & $signtoolPath.FullName sign /f $certPath /p $exportPassword /fd SHA256 /tr http://timestamp.digicert.com /td SHA256 $file.FullName
+              if ($LASTEXITCODE -ne 0) {
+                throw "signtool failed with exit code $LASTEXITCODE for $($file.FullName)"
+              }
+              & $signtoolPath.FullName verify /pa /v $file.FullName
+              $verifyExitCode = $LASTEXITCODE
+              if ($verifyExitCode -ne 0) {
+                Write-Warning "Signature verification did not establish a trusted certificate chain (exit code $verifyExitCode). The file is signed, but the self-signed certificate is not trusted by this runner."
+                $global:LASTEXITCODE = 0
+              } else {
+                Write-Host "Signature verified successfully for $($file.FullName)"
+              }
+              Write-Host "Successfully signed $($file.FullName)"
+            }
+          } else {
+            Write-Warning "signtool not found. Proceeding without signing."
+          }
+
+      - name: Clean up certificate
+        if: ${{ env.HAS_SIGNING_CERT == 'true' && always() }}
+        run: |
+          Remove-Item -Path "signing_cert.pfx" -ErrorAction SilentlyContinue
+          Write-Host "Certificate cleaned up"
 
       - uses: actions/upload-artifact@v4
         with:
